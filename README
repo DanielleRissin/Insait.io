@@ -1,0 +1,127 @@
+# Flask and PostgreSQL Dockerized Application
+
+This project demonstrates a simple Flask application that interacts with a PostgreSQL database.
+The application is containerized using Docker and can be easily set up and run using Docker Compose.
+
+## Prerequisites
+
+- Docker
+- Docker Compose
+
+## Project Structure
+
+services/
+├── db/
+│ ├── db_handler.py
+│ ├── Dockerfile
+│ ├── requirements.txt
+├── server/
+│ ├── FlaskServer.py
+│ ├── Dockerfile
+│ ├── requirements.txt
+├── .env
+├── README
+├── test_db.py
+└── docker-compose.yml
+
+
+
+##Files Description
+
+db/db_handler.py: Contains functions for creating the database table and inserting data into it.
+
+db/Dockerfile: Defines the Docker image for the PostgreSQL database.
+
+db/requirements.txt: Lists Python dependencies for the database service.
+
+server/FlaskServer.py: Implements the Flask application with the /ask endpoint.
+
+server/Dockerfile: Defines the Docker image for the Flask application.
+
+server/requirements.txt: Lists Python dependencies for the Flask service.
+
+server/test_db.py: Contains tests for the DB application using pytest.
+
+.env: Contains environment variables for configuring the application and database.
+
+docker-compose.yml: Defines the Docker Compose configuration for setting up the multi-container
+application.
+
+
+## Environment Variables
+
+The project uses environment variables for configuration. Fill the `.env` file that is added in the `services`
+ directory were ever it is said "fill me".
+
+ Setting Up the Project:
+1. Clone the Repository
+ in the cmd write:
+______________________________________________________________________________
+ git clone <repository_url>
+ cd <repository_directory>/services
+______________________________________________________________________________
+
+
+2. Build and Run the Containers
+Make sure Docker is running on your system. Then, execute the following command to build and start the containers:
+______________________________________________________________________________
+docker-compose up --build
+______________________________________________________________________________
+
+This command will build the Docker images and start the containers for both the PostgreSQL database and the Flask
+application.
+
+
+3. Access the Application
+The Flask application will be accessible at http://localhost:5000. You can use tools like curl or
+Postman to interact with the API.
+
+API Endpoints
+/ask
+Method: POST
+Description: This endpoint accepts a question and returns an answer using OpenAI's GPT-3.5-turbo model.
+This line needs to go into POSTMAN:
+______________________________________________________________________________
+http://localhost:5000/ask
+______________________________________________________________________________
+
+Method set to: POST
+
+Request Body:
+______________________________________________________________________________
+{
+  "question": "a question you want to ask"
+}
+______________________________________________________________________________
+you will recive  a message like this:
+{
+  "question": "<your question>"
+  "answer": "<answer>"
+}
+
+4. Running Tests
+The project includes tests for the DB applicationA and unseration using pytest.
+To run the tests, use the following command:
+______________________________________________________________________________
+docker-compose run server pytest
+______________________________________________________________________________
+
+This command will run the tests defined in the test_db.py file.
+
+
+5.Notes
+  Ensure that the network demo-network exists or is created by Docker Compose.
+  Modify the .env file with your actual configuration details.
+
+6.Troubleshooting
+If you encounter any issues while setting up or running the application, consider the following steps:
+
+    1.Check if Docker and Docker Compose are correctly installed and running.
+    2.Ensure the .env file is correctly configured with the required environment variables.
+    3.Check the logs of the running containers for any error messages:
+______________________________________________________________________________
+    docker-compose logs
+______________________________________________________________________________
+
+
+good luck:)
