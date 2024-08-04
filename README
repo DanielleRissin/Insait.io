@@ -50,8 +50,17 @@ application.
 
 ## Environment Variables
 
-The project uses environment variables for configuration. Fill the `.env` file that is added in the `services`
- directory were ever it is said "fill me".
+The project uses environment variables for configuration. creat anf fill a `.env` file. Add it under `services`. Change the
+ directory were ever it says"fill me". The .env file should look like this:
+  DB_HOST=#fill me#
+  DB_NAME=#fill me#
+  DB_USER=#fill me#
+  DB_PASS=#fill me#
+  DB_PORT=#fill me#
+  TABLE_NAME="#fill me#"
+  API_KEY=#fill me#
+  
+
 
  Setting Up the Project:
 1. Clone the Repository
